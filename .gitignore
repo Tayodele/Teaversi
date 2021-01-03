@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+#Windows Debug and vs folders
+Debug
+.vs
