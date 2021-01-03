@@ -9,7 +9,7 @@ using namespace std;
 Rspot* myBoard[8][8];
 
 //player flipping
-void flipPoints(int x,int y,spotcolor pcolor){
+void flipPoints(int x,int y,spotcolor pcolor,Rbot* abot,bool popbot){
     mini spots[8];
     int idx = 0;
     int a = 0;
@@ -24,6 +24,7 @@ void flipPoints(int x,int y,spotcolor pcolor){
         if(myBoard[a][y]->getColor() == pcolor) {
         for(int j=0;j<idx;j++) {
             myBoard[spots[j].x][spots[j].y]->setColor(pcolor);
+            if(popbot) abot->setSpace(pcolor,spots[j].x,spots[j].y);
         }
         break;
         }
@@ -42,6 +43,7 @@ void flipPoints(int x,int y,spotcolor pcolor){
         if(myBoard[a][y]->getColor() == pcolor) {
         for(int j=0;j<idx;j++) {
             myBoard[spots[j].x][spots[j].y]->setColor(pcolor);
+            if(popbot) abot->setSpace(pcolor,spots[j].x,spots[j].y);
         }
         break;
         }
@@ -60,6 +62,7 @@ void flipPoints(int x,int y,spotcolor pcolor){
         if(myBoard[x][b]->getColor() == pcolor) {
         for(int j=0;j<idx;j++) {
             myBoard[spots[j].x][spots[j].y]->setColor(pcolor);
+            if(popbot) abot->setSpace(pcolor,spots[j].x,spots[j].y);
         }
         break;
         }
@@ -78,6 +81,7 @@ void flipPoints(int x,int y,spotcolor pcolor){
         if(myBoard[x][b]->getColor() == pcolor) {
         for(int j=0;j<idx;j++) {
             myBoard[spots[j].x][spots[j].y]->setColor(pcolor);
+            if(popbot) abot->setSpace(pcolor,spots[j].x,spots[j].y);
         }
         break;
         }
@@ -98,6 +102,7 @@ void flipPoints(int x,int y,spotcolor pcolor){
         if(myBoard[a][b]->getColor() == pcolor) {
         for(int j=0;j<idx;j++) {
             myBoard[spots[j].x][spots[j].y]->setColor(pcolor);
+            if(popbot) abot->setSpace(pcolor,spots[j].x,spots[j].y);
         }
         break;
         }
@@ -118,6 +123,7 @@ void flipPoints(int x,int y,spotcolor pcolor){
         if(myBoard[a][b]->getColor() == pcolor) {
         for(int j=0;j<idx;j++) {
             myBoard[spots[j].x][spots[j].y]->setColor(pcolor);
+            if(popbot) abot->setSpace(pcolor,spots[j].x,spots[j].y);
         }
         break;
         }
@@ -138,6 +144,7 @@ void flipPoints(int x,int y,spotcolor pcolor){
         if(myBoard[a][b]->getColor() == pcolor) {
         for(int j=0;j<idx;j++) {
             myBoard[spots[j].x][spots[j].y]->setColor(pcolor);
+            if(popbot) abot->setSpace(pcolor,spots[j].x,spots[j].y);
         }
         break;
         }
@@ -158,6 +165,7 @@ void flipPoints(int x,int y,spotcolor pcolor){
         if(myBoard[a][b]->getColor() == pcolor) {
         for(int j=0;j<idx;j++) {
             myBoard[spots[j].x][spots[j].y]->setColor(pcolor);
+            if(popbot) abot->setSpace(pcolor,spots[j].x,spots[j].y);
         }
         break;
         }
@@ -179,7 +187,7 @@ void playerMove(Rbot* opp, spotcolor pcolor) {
     cin >> y;
     opp->setSpace(pcolor, x, y);
     myBoard[x][y]->setColor(pcolor);
-    flipPoints(x,y,pcolor);
+    flipPoints(x,y,pcolor,opp,true);
 }
 
 void printGame() {
@@ -225,7 +233,7 @@ int main() {
     cout << "\nBot's Turn!\n";
     botopp->playMove(botx,boty,botcolor);
     myBoard[botx][boty]->setColor(botcolor);
-    flipPoints(botx,boty,botcolor);
+    flipPoints(botx,boty,botcolor,botopp,false);
     printGame();
     playerMove(botopp, pcolor);
   }
